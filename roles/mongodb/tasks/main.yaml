@@ -6,7 +6,7 @@
   - name: copy catalogue js
     ansible.builtin.copy: 
       src: catalogue.js
-      dest: /tmp/
+      dest: /tmp/catalogue.js
 
   
   - name: install mongodb
