@@ -25,7 +25,7 @@
       state: directory
 
 
-# here it is downloading from S3 AWS but i need to download it from nexus
+  # here it is downloading from S3 AWS but i need to download it from nexus
   # - name: "downloading the {{component}} artifact"
   #   ansible.builtin.get_url:
   #     url: "https://roboshop-builds.s3.amazonaws.com/{{component}}.zip"
