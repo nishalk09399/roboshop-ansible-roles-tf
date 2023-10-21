@@ -22,10 +22,11 @@
   args:
     chdir: /app
 
-- name: Load Schema
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: load-schema
+# we are doing this as part of mongodb itself
+# - name: Load Schema
+#   ansible.builtin.import_role:
+#     name: common
+#     tasks_from: load-schema
 
 - name: Start application
   ansible.builtin.import_role:

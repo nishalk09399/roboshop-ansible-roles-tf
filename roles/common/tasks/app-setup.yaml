@@ -24,13 +24,23 @@
       path: /app
       state: directory
 
-  - name: "downloading the {{component}} artifact"
+
+# here it is downloading from S3 AWS but i need to download it from nexus
+  # - name: "downloading the {{component}} artifact"
+  #   ansible.builtin.get_url:
+  #     url: "https://roboshop-builds.s3.amazonaws.com/{{component}}.zip"
+  #     dest: /tmp
+
+  # here it is downloading artifact from the nexus
+  - name: "downloading the artifact from nexus"
     ansible.builtin.get_url:
-      url: "https://roboshop-builds.s3.amazonaws.com/{{component}}.zip"
-      dest: /tmp
+      url: "{{nexus_url}}/{{component}}/{{group_id}}/{{component}}/{{app_version}}/{{component}}-{{app_version}}.zip"
+      dest: "/app/{{component}}-{{app_version}}.zip"
+      user_name: "{{nexus_username}}"
+      password: "{{nexus_password}}"
 
   - name: unzipping the {{component}} files
     ansible.builtin.unarchive:
-      src: /tmp/{{component}}.zip
-      dest: /app
+      src: "/app/{{component}}-{{app_version}}.zip"
+      dest: "/app"
       remote_src: yes
